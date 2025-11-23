@@ -4,9 +4,9 @@ from typing import Callable, Any
 def cache(func: Callable) -> Callable:
     save_list = []
 
-    def wrapper(*args: Any, **kwargs: Any) -> Any:
+    def wrapper(*args, **kwargs) -> Any:
         for item in save_list:
-            if args == item[0]:
+            if args in item and kwargs in item:
                 print("Getting from cache")
                 return item[-1]
         result = func(*args, **kwargs)
